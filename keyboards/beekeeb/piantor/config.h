@@ -10,3 +10,14 @@
 #define SERIAL_USART_FULL_DUPLEX
 #define SERIAL_USART_TX_PIN GP0
 #define SERIAL_USART_RX_PIN GP1
+
+// Configure the global tapping term (default: 200ms)
+#define TAPPING_TERM 200
+
+// Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
+#define TAPPING_FORCE_HOLD
+
+#define LEADER_PER_KEY_TIMING
+#define LEADER_TIMEOUT 350
+#define LEADER_NO_TIMEOUT
+	/* only no timeout for the first key to press, afterwards the LEADER_TIMEOUT counts */
