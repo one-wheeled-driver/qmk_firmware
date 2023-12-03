@@ -21,13 +21,13 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      /*
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
-      *     │  Tab  │   Q   │   W   │   E   │   R   │   T   │       │   Z   │   U   │   I   │   O   │   P   │   Ü   │
+      *     │  ESC  │   Q   │   W   │   E   │   R   │   T   │       │   Z   │   U   │   I   │   O   │   P   │   Ü   │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │  Ctl  │   A   │   S   │   D   │   F   │   G   │       │   H   │   J   │   K   │   L   │   Ö   │   Ä   │
+      *     │  Tab  │   A   │   S   │   D   │   F   │   G   │       │   H   │   J   │   K   │   L   │   Ö   │   Ä   │
       *     │       │  Ctl  │  Gui  │  NAV  │  Sft  │       │       │       │  Sft  │  SYM  │  Gui  │  Ctl  │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │  Sft  │   Y   │   X   │   C   │   V   │   B   │       │   N   │   M   │   ,   │   .   │   -   │  Sft  │
+      *     │  Sft  │   Y   │   X   │   C   │   V   │   B   │       │   N   │   M   │   ,   │   .   │   -   │ Repeat│
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
       *                               ┌───────┐                                   ┌───────┐
@@ -41,9 +41,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                                               └───────┘   └───────┘
       */
     [L_BASE] = LAYOUT_split_3x6_3(
-        QK_REP,		KC_Q,			KC_W,			KC_E,			KC_R,			KC_T,					KC_Y,			KC_U,			KC_I,			KC_O,			KC_P,				KC_LBRC, 
+        KC_ESC,		KC_Q,			KC_W,			KC_E,			KC_R,			KC_T,					KC_Y,			KC_U,			KC_I,			KC_O,			KC_P,				KC_LBRC, 
         KC_TAB,		LCTL_T(KC_A),	LGUI_T(KC_S),	LT(L_NAV, KC_D),LSFT_T(KC_F),	KC_G,					KC_H,			RSFT_T(KC_J),	LT(L_NUM, KC_K),RGUI_T(KC_L),	RCTL_T(KC_SCLN),	KC_QUOT, 
-        KC_LSFT, 	KC_Z, 			KC_X, 			KC_C, 			KC_V, 			KC_B, 					KC_N, 			KC_M, 			KC_COMM, 		KC_DOT, 		KC_SLSH, 			KC_RSFT, 
+        KC_LSFT, 	KC_Z, 			KC_X, 			KC_C, 			KC_V, 			KC_B, 					KC_N, 			KC_M, 			KC_COMM, 		KC_DOT, 		KC_SLSH, 			QK_REP, 
         											OSM(MOD_LCTL),	KC_LSFT, 		LT_LEADER,	        	OSL(L_SYM),		KC_SPC, 		KC_BSPC),
     [L_NAV] = LAYOUT_split_3x6_3(
     	TO(0), 		KC_PAST, 		KC_P7, 			KC_P8, 			KC_P9, 			KC_PMNS, 				LCTL(KC_PGUP), 	KC_HOME, 		KC_UP, 			KC_END, 		KC_NO, 				KC_NO, 
@@ -51,10 +51,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     	KC_NO, 		KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 					TO(1), 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
     												KC_NO, 			KC_NO, 			LT_LEADER, 				LCTL(KC_BSPC), 	KC_ENTER, 		KC_NO),
     [L_NUM] = LAYOUT_split_3x6_3(
-    	TO(0), 		KC_PAST, 		KC_P7, 			KC_P8, 			KC_P9, 			KC_PMNS, 				LCTL(KC_PGUP), 	KC_HOME, 		KC_UP, 			KC_END, 		KC_NO, 				KC_NO, 
-    	KC_NO, 		KC_PSLS, 		LGUI_T(KC_P4), 	KC_P5, 			LSFT_T(KC_P6), 	KC_PPLS, 				LCTL(KC_PGDN), 	KC_LEFT, 		KC_DOWN, 		KC_RGHT, 		MO(3), 				KC_NO, 
-    	KC_NO, 		KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 					TO(1), 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
-    												KC_NO, 			KC_NO, 			KC_TRNS, 				LCTL(KC_BSPC), 	KC_ENTER, 		KC_NO),
+    	TO(0), 		KC_PAST, 		KC_P7, 			KC_P8, 			KC_P9, 			KC_PMNS, 				KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 
+    	KC_NO, 		KC_PSLS, 		LGUI_T(KC_P4), 	KC_P5, 			LSFT_T(KC_P6), 	KC_PPLS, 				KC_NO, 			_______, 		_______, 		_______, 		_______,			KC_NO, 
+    	KC_NO, 		KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 					KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
+    												KC_NO, 			KC_NO, 			KC_TRNS, 				LCTL(KC_BSPC), 	_______, 		_______),
     [L_NAV_NUM] = LAYOUT_split_3x6_3(
     	TO(0), 		KC_PAST, 		KC_P7, 			KC_P8, 			KC_P9, 			KC_PMNS, 				LCTL(KC_PGUP), 	KC_HOME, 		KC_UP, 			KC_END, 		KC_NO, 				KC_NO, 
     	KC_NO, 		KC_PSLS, 		LGUI_T(KC_P4), 	KC_P5, 			LSFT_T(KC_P6), 	KC_PPLS, 				LCTL(KC_PGDN), 	KC_LEFT, 		KC_DOWN, 		KC_RGHT, 		MO(3), 				KC_NO, 
@@ -159,5 +159,92 @@ void leader_end_user(void) {
     {
         SEND_STRING("/home/lo/data/git_repos/extern/extern.py");
         tap_code(KC_ENTER);
+    }
+    else if (leader_sequence_three_keys(KC_D, KC_E, KC_G)) 
+    {
+        //SEND_STRING("°");
+    }
+    else if (leader_sequence_two_keys(KC_F, KC_T)) 
+    {
+        //SEND_STRING("´");
+    }
+    else if (leader_sequence_two_keys(KC_B, KC_T)) 
+    {
+        SEND_STRING("`");
+    }
+    else if (leader_sequence_three_keys(KC_P, KC_E, KC_R)) 
+    {
+        //SEND_STRING("%");
+    }
+    else if (leader_sequence_three_keys(KC_D, KC_O, KC_L)) 
+    {
+        SEND_STRING("$");
+    }
+    else if (leader_sequence_three_keys(KC_E, KC_U, KC_R)) 
+    {
+        //SEND_STRING("€");
+    }
+    else if (leader_sequence_two_keys(KC_P, KC_M)) 
+    {
+        SEND_STRING(PRIVATE_MAIL);
+    }
+    else if (leader_sequence_two_keys(KC_W, KC_M)) 
+    {
+        SEND_STRING(WORK_MAIL);
+    }
+        else if (leader_sequence_two_keys(KC_C, KC_B)) 
+    {
+        SEND_STRING("```");
+        tap_code(KC_ENTER);
+        tap_code(KC_ENTER);
+        SEND_STRING("```");
+        tap_code(KC_UP);
+    }
+    else if (leader_sequence_two_keys(KC_D, KC_S)) 
+    {
+        SEND_STRING("//");
+    }
+    else if (leader_sequence_two_keys(KC_C, KC_O)) 
+    {
+        // Comment out
+        tap_code(KC_HOME);
+        tap_code(KC_HOME);
+            /* multiple times for some weird editors like sublime 
+             * only jump to begin of whitespace or so */
+        SEND_STRING("//");
+    }
+    else if (leader_sequence_two_keys(KC_D, KC_L)) 
+    {
+        // Delete Line
+        tap_code(KC_END);
+        register_code(KC_LSFT);
+        tap_code(KC_HOME);
+        tap_code(KC_HOME);
+        /* multiple times for some weird editors like sublime 
+         * only jump to begin of whitespace or so */
+        unregister_code(KC_LSFT);
+        tap_code(KC_BSPC);
+        tap_code(KC_BSPC);
+    }
+    else if (leader_sequence_two_keys(KC_C, KC_L)) 
+    {
+        // Clone Line
+        tap_code(KC_END);
+        register_code(KC_LSFT);
+        tap_code(KC_HOME);
+        /* multiple times for some weird editors like sublime 
+         * only jump to begin of whitespace or so */
+        unregister_code(KC_LSFT);
+
+        register_code(KC_LCTL);
+        tap_code(KC_C);
+        unregister_code(KC_LCTL);
+
+        tap_code(KC_END);
+        tap_code(KC_ENTER);
+
+        register_code(KC_LCTL);
+        tap_code(KC_V);
+        unregister_code(KC_LCTL);
     }
 }
