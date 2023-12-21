@@ -7,8 +7,8 @@
 enum layers {
 	L_BASE = 0,
 	L_NAV,
-	L_NUM,
-	L_NAV_NUM,
+	L_NUM_L,
+	L_NUM_R,
 	L_SYM,
 	L_F
 };
@@ -42,24 +42,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [L_BASE] = LAYOUT_split_3x6_3(
         KC_ESC,		KC_Q,			KC_W,			KC_E,			KC_R,			KC_T,					KC_Y,			KC_U,			KC_I,			KC_O,			KC_P,				KC_LBRC, 
-        KC_TAB,		LCTL_T(KC_A),	LGUI_T(KC_S),	LT(L_NAV, KC_D),LSFT_T(KC_F),	KC_G,					KC_H,			RSFT_T(KC_J),	LT(L_NUM, KC_K),RGUI_T(KC_L),	RCTL_T(KC_SCLN),	KC_QUOT, 
+        KC_TAB,		LCTL_T(KC_A),	LGUI_T(KC_S),	LT(L_NAV, KC_D),LSFT_T(KC_F),	KC_G,					KC_H,			RSFT_T(KC_J),	LT(L_NUM_L,KC_K),RGUI_T(KC_L),	RCTL_T(KC_SCLN),	KC_QUOT, 
         KC_LSFT, 	KC_Z, 			KC_X, 			KC_C, 			KC_V, 			KC_B, 					KC_N, 			KC_M, 			KC_COMM, 		KC_DOT, 		KC_SLSH, 			QK_REP, 
-        											MOD_LCTL,    	KC_LSFT, 		LT_LEADER,	        	L_SYM,		KC_SPC, 		KC_BSPC),
+        											KC_LCTL,    	KC_LSFT, 		LT_LEADER,	        	MO(L_SYM),		KC_SPC, 		KC_BSPC),
     [L_NAV] = LAYOUT_split_3x6_3(
-    	TO(0), 		KC_PAST, 		KC_P7, 			KC_P8, 			KC_P9, 			KC_PMNS, 				LCTL(KC_PGUP), 	KC_HOME, 		KC_UP, 			KC_END, 		KC_NO, 				KC_NO, 
-    	KC_NO, 		KC_PSLS, 		LGUI_T(KC_P4), 	KC_P5, 			LSFT_T(KC_P6), 	KC_PPLS, 				LCTL(KC_PGDN), 	KC_LEFT, 		KC_DOWN, 		KC_RGHT, 		MO(3), 				KC_NO, 
-    	KC_NO, 		KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 					TO(1), 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
-    												KC_NO, 			KC_NO, 			LT_LEADER, 				KC_DEL,      	KC_ENTER, 		LCTL(KC_BSPC)),
-    [L_NUM] = LAYOUT_split_3x6_3(
-    	TO(0), 		KC_PAST, 		KC_P7, 			KC_P8, 			KC_P9, 			KC_PMNS, 				KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 
-    	KC_NO, 		KC_PSLS, 		LGUI_T(KC_P4), 	KC_P5, 			LSFT_T(KC_P6), 	KC_PPLS, 				KC_NO, 			_______, 		_______, 		_______, 		_______,			KC_NO, 
-    	KC_NO, 		KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 					KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
+    	_______, 	_______, 		_______, 		_______, 		_______, 		_______, 				LCTL(KC_PGUP), 	KC_HOME, 		KC_UP, 			KC_END, 		KC_NO, 				KC_NO, 
+    	_______, 	_______, 		_______, 		_______, 		_______, 		_______, 				LCTL(KC_PGDN), 	KC_LEFT, 		KC_DOWN, 		KC_RGHT, 		MO(3), 				KC_NO, 
+    	_______, 	_______, 		_______, 		_______, 		_______, 		_______, 				TO(1), 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
+    												_______, 		_______, 		_______, 				KC_DEL,      	KC_ENTER, 		LCTL(KC_BSPC)),
+    [L_NUM_L] = LAYOUT_split_3x6_3(
+    	TO(0), 		KC_PAST, 		KC_1, 			KC_2, 			KC_3, 			KC_PMNS, 				KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 
+    	KC_NO, 		KC_PSLS, 		KC_4,        	KC_5, 			KC_6,         	KC_PPLS, 				KC_NO, 			_______, 		_______, 		_______, 		_______,			KC_NO, 
+    	KC_NO, 		KC_NO, 			KC_7, 			KC_8, 			KC_9, 			KC_0, 					KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
     												KC_NO, 			KC_NO, 			KC_TRNS, 				LCTL(KC_BSPC), 	_______, 		_______),
-    [L_NAV_NUM] = LAYOUT_split_3x6_3(
-    	TO(0), 		KC_PAST, 		KC_P7, 			KC_P8, 			KC_P9, 			KC_PMNS, 				LCTL(KC_PGUP), 	KC_HOME, 		KC_UP, 			KC_END, 		KC_NO, 				KC_NO, 
-    	KC_NO, 		KC_PSLS, 		LGUI_T(KC_P4), 	KC_P5, 			LSFT_T(KC_P6), 	KC_PPLS, 				LCTL(KC_PGDN), 	KC_LEFT, 		KC_DOWN, 		KC_RGHT, 		MO(3), 				KC_NO, 
-    	KC_NO, 		KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 					TO(1), 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
-    												KC_NO, 			KC_NO, 			KC_TRNS, 				LCTL(KC_BSPC), 	KC_ENTER, 		KC_NO),
+    [L_NUM_R] = LAYOUT_split_3x6_3(
+    	KC_NO, 		KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,			KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
+    	KC_NO, 		KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,			KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 			KC_NO, 
+    	KC_NO, 		KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
+    												KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,			KC_ENTER, 		KC_DOT),
      /* SYM Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
       *     │   ^   │   ?   │   =   │   (   │   )   │   ~   │       │   "   │   &   │       │   |   │   +   │   ß   │
@@ -93,6 +93,59 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     												KC_NO,			KC_NO,			KC_NO,					KC_NO,			KC_NO,			KC_NO),
 };
 
+enum combo_events {
+    COM_NUM_R_ON,
+    COM_NUM_R_OFF,
+    EM_EMAIL,
+    BSPC_LSFT_CLEAR,
+};
+
+const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
+//const uint16_t PROGMEM numpad_on_combo[] = {KC_J, KC_K, KC_L, COMBO_END};
+const uint16_t PROGMEM numpad_on_combo[] = {RSFT_T(KC_J), LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
+const uint16_t PROGMEM email_combo[] = {KC_E, KC_M, COMBO_END};
+const uint16_t PROGMEM clear_line_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
+
+combo_t key_combos[] = {
+	[EM_EMAIL] = COMBO_ACTION(email_combo),
+	[BSPC_LSFT_CLEAR] = COMBO_ACTION(clear_line_combo),
+	[COM_NUM_R_ON]  = COMBO_ACTION(numpad_on_combo),
+	[COM_NUM_R_OFF] = COMBO_ACTION(numpad_off_combo),
+};
+/* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) 
+    {
+        case EM_EMAIL:
+            if (pressed) {
+                SEND_STRING("john.doe@example.com");
+            }
+        break;
+
+        case BSPC_LSFT_CLEAR:
+            if (pressed) {
+                tap_code16(KC_END);
+                tap_code16(S(KC_HOME));
+                tap_code16(KC_BSPC);
+            }
+        break;
+
+        case COM_NUM_R_ON:
+        if (pressed) 
+        {
+            layer_on(L_NUM_R);
+        }
+        break;
+
+        case COM_NUM_R_OFF:
+        if (pressed) 
+        {
+            layer_off(L_NUM_R);
+        }
+        break;
+    }
+}
 
 void keyboard_post_init_user(void) 
 {
