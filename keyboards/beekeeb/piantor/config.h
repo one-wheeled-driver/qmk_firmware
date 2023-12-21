@@ -21,3 +21,5 @@
 #define LEADER_TIMEOUT 350
 #define LEADER_NO_TIMEOUT
 	/* only no timeout for the first key to press, afterwards the LEADER_TIMEOUT counts */
+
+#define COMBO_MUST_TAP_PER_COMBO

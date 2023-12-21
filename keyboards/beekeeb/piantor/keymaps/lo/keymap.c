@@ -56,10 +56,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     	KC_NO, 		KC_NO, 			KC_7, 			KC_8, 			KC_9, 			KC_0, 					KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
     												KC_NO, 			KC_NO, 			KC_TRNS, 				LCTL(KC_BSPC), 	_______, 		_______),
     [L_NUM_R] = LAYOUT_split_3x6_3(
-    	KC_NO, 		KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,			KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
-    	KC_NO, 		KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,			KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 			KC_NO, 
-    	KC_NO, 		KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
-    												KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,			KC_ENTER, 		KC_DOT),
+    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO,			KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
+    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO,			KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 			KC_NO, 
+    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
+    												TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO,			KC_ENTER, 		KC_DOT),
      /* SYM Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
       *     │   ^   │   ?   │   =   │   (   │   )   │   ~   │       │   "   │   &   │       │   |   │   +   │   ß   │
@@ -96,41 +96,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 enum combo_events {
     COM_NUM_R_ON,
     COM_NUM_R_OFF,
-    EM_EMAIL,
-    BSPC_LSFT_CLEAR,
+    COM_ENTER,
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
-//const uint16_t PROGMEM numpad_on_combo[] = {KC_J, KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM numpad_on_combo[] = {RSFT_T(KC_J), LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
-const uint16_t PROGMEM email_combo[] = {KC_E, KC_M, COMBO_END};
-const uint16_t PROGMEM clear_line_combo[] = {KC_BSPC, KC_LSFT, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {KC_SPC, KC_BSPC, COMBO_END};
 
 combo_t key_combos[] = {
-	[EM_EMAIL] = COMBO_ACTION(email_combo),
-	[BSPC_LSFT_CLEAR] = COMBO_ACTION(clear_line_combo),
 	[COM_NUM_R_ON]  = COMBO_ACTION(numpad_on_combo),
 	[COM_NUM_R_OFF] = COMBO_ACTION(numpad_off_combo),
+	[COM_ENTER] = COMBO_ACTION(enter_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
     switch(combo_index) 
     {
-        case EM_EMAIL:
-            if (pressed) {
-                SEND_STRING("john.doe@example.com");
-            }
-        break;
-
-        case BSPC_LSFT_CLEAR:
-            if (pressed) {
-                tap_code16(KC_END);
-                tap_code16(S(KC_HOME));
-                tap_code16(KC_BSPC);
-            }
-        break;
-
         case COM_NUM_R_ON:
         if (pressed) 
         {
@@ -144,7 +126,22 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             layer_off(L_NUM_R);
         }
         break;
+
+        case COM_ENTER:
+        if (pressed) 
+        {
+            tap_code(KC_ENTER);
+        }
+        break;
     }
+}
+
+/* Needed to make fire combos only if they are tapped. Only working
+ * if COMBO_MUST_TAP_PER_COMBO is defined. 
+ */
+bool get_combo_must_tap(uint16_t index, combo_t *combo)
+{
+	return true;
 }
 
 void keyboard_post_init_user(void) 
