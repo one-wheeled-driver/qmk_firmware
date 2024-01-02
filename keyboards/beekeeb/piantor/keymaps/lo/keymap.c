@@ -110,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *     │       │   !   │   <   │   {   │   }   │   >   │       │   #   │       │       │       │       │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │       │       │       │   [   │   ]   │       │       │   /   │   *   │       │       │       │       │
+      *     │       │       │       │   [   │   ]   │   \   │       │   /   │   *   │       │       │       │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
       *                               ┌───────┐                                   ┌───────┐
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [L_SYM] = LAYOUT_split_3x6_3(
     	KC_CIRC, 	LSFT(KC_MINS),	LSFT(KC_0),		LSFT(KC_8),		LSFT(KC_9),		RALT(KC_RBRC),			LSFT(KC_2),		LSFT(KC_6),		KC_NO, 			RALT(KC_NUBS),	KC_RBRC, 			KC_MINS,
     	KC_NO,		LSFT(KC_1),		KC_NUBS,		RALT(KC_7),		RALT(KC_0),		RSFT(KC_NUBS),			KC_NUHS,		KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
-    	KC_NO,		KC_NO,			KC_NO,			RALT(KC_8),		RALT(KC_9),		KC_NO,					LSFT(KC_7),		LSFT(KC_RBRC),	KC_NO,			KC_NO,			KC_NO,				KC_NO,
+    	KC_NO,		KC_NO,			KC_NO,			RALT(KC_8),		RALT(KC_9),		RALT(KC_MINS),			LSFT(KC_7),		LSFT(KC_RBRC),	KC_NO,			KC_NO,			KC_NO,				KC_NO,
     												KC_NO,			KC_NO,			KC_NO,					TO(0), 			KC_NO,			KC_NO),
     [L_F] = LAYOUT_split_3x6_3(
     	TO(0),		KC_NO,			KC_F8,			KC_F9,			KC_F10,			KC_F11,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
