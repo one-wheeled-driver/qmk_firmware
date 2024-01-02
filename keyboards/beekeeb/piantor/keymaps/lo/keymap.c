@@ -78,10 +78,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     												KC_NO, 			KC_ENTER, 		KC_DOT, 				KC_NO, 			KC_NO, 			KC_NO),
      /* L_NUM_R Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
-      *     │       │       │       │       │       │       │       │  Bsp  │   7   │   8   │   9   │   -   │       │
+      *     │       │       │       │  up   │       │       │       │  Bsp  │   7   │   8   │   9   │   -   │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │       │       │       │       │       │       │       │       │   4   │   5   │   6   │   +   │       │
+      *     │       │       │ left  │  down │ right │       │       │       │   4   │   5   │   6   │   +   │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
       *     │       │       │       │       │       │       │       │       │   1   │   2   │   3   │   0   │       │
@@ -98,8 +98,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                                               └───────┘   └───────┘
       */
     [L_NUM_R] = LAYOUT_split_3x6_3(
-    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_BSPC,		KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
-    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO,			KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 			KC_NO, 
+    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	KC_UP, 			TO(L_BASE), 	TO(L_BASE), 			KC_BSPC,		KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
+    	TO(L_BASE), TO(L_BASE), 	KC_LEFT, 		KC_DOWN, 		KC_RGHT, 		TO(L_BASE), 			KC_NO,			KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 			KC_NO, 
     	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
     												TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_BSPC,		KC_ENTER, 		KC_DOT),
      /* SYM Layer
