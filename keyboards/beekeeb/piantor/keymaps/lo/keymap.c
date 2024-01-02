@@ -379,6 +379,47 @@ void leader_end_user(void) {
     	// ß
         tap_code(KC_MINS);
     } 
+    else if (leader_sequence_three_keys(KC_G, KC_R, KC_H))
+    {
+    	// git reset --hard
+        SEND_STRING("git reset --hard");
+    } 
+    else if (leader_sequence_two_keys(KC_G, KC_C))
+    {
+    	// git reset --hard
+        SEND_STRING("git checkout");
+    }
+    else if (leader_sequence_three_keys(KC_O, KC_M, KC_B))
+    {
+    	// obsidian math block
+        SEND_STRING("$$");
+        tap_code(KC_ENTER);
+        SEND_STRING("\\begin{aligned}");
+        tap_code(KC_ENTER);
+        tap_code(KC_ENTER);
+        SEND_STRING("\\end{aligned}");
+        tap_code(KC_ENTER);
+        SEND_STRING("$$");
+        tap_code(KC_UP);
+        tap_code(KC_UP);
+    }    
+    else if (leader_sequence_three_keys(KC_O, KC_M, KC_A))
+    {
+    	// obsidian math align
+        SEND_STRING("\\begin{aligned}");
+        tap_code(KC_ENTER);
+        tap_code(KC_ENTER);
+        SEND_STRING("\\end{aligned}");
+        tap_code(KC_UP);
+    }
+    else if (leader_sequence_three_keys(KC_O, KC_M, KC_I))
+    {
+    	// obsidian math inline
+        SEND_STRING("$$");
+        SEND_STRING("$$");
+        tap_code(KC_LEFT);
+        tap_code(KC_LEFT);
+    }
 }
      /* empty Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
