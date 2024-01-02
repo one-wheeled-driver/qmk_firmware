@@ -34,32 +34,74 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                               |       |                                   |       |
       *                               │  CTL  ├───────┐                   ┌───────┤  Bsp  │
       *                               |       |       |                   |       |       |
-      *                               └───────┤  Sft  ├───────┐   ┌───────┤  Ent  ├───────┘
-      *                                       |       |       |   |       |       |
-      *                                       └───────┤  Lead │   │  SYM  ├───────┘
-      *                                               |  NAV  |   |       |
+      *                               └───────┤  Sft  ├───────┐   ┌───────┤ Space ├───────┘
+      *                                       |     LEADER    |   |       |       |
+      *                                       └───────┤ Enter │   │  SYM  ├───────┘
+      *                                               |       |   |       |
       *                                               └───────┘   └───────┘
       */
     [L_BASE] = LAYOUT_split_3x6_3(
         KC_ESC,		KC_Q,			KC_W,			KC_E,			KC_R,			KC_T,					KC_Y,			KC_U,			KC_I,			KC_O,			KC_P,				KC_LBRC, 
         KC_TAB,		LCTL_T(KC_A),	LGUI_T(KC_S),	LT(L_NAV, KC_D),LSFT_T(KC_F),	KC_G,					KC_H,			RSFT_T(KC_J),	LT(L_NUM_L,KC_K),RGUI_T(KC_L),	RCTL_T(KC_SCLN),	KC_QUOT, 
         KC_LSFT, 	KC_Z, 			KC_X, 			KC_C, 			KC_V, 			KC_B, 					KC_N, 			KC_M, 			KC_COMM, 		KC_DOT, 		KC_SLSH, 			QK_REP, 
-        											KC_LCTL,    	KC_LSFT, 		LT_LEADER,	        	MO(L_SYM),		KC_SPC, 		KC_BSPC),
+        											KC_LCTL,    	KC_LSFT, 		KC_ENTER,	        	MO(L_SYM),		KC_SPC, 		KC_BSPC),
     [L_NAV] = LAYOUT_split_3x6_3(
     	_______, 	_______, 		_______, 		_______, 		_______, 		_______, 				LCTL(KC_PGUP), 	KC_HOME, 		KC_UP, 			KC_END, 		KC_NO, 				KC_NO, 
     	_______, 	_______, 		_______, 		_______, 		_______, 		_______, 				LCTL(KC_PGDN), 	KC_LEFT, 		KC_DOWN, 		KC_RGHT, 		MO(3), 				KC_NO, 
     	_______, 	_______, 		_______, 		_______, 		_______, 		_______, 				TO(1), 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
     												_______, 		_______, 		_______, 				KC_DEL,      	KC_ENTER, 		LCTL(KC_BSPC)),
+     /* L_NUM_L Layer
+      *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
+      *     │       │   *   │   1   │   2   │   3   │   -   │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │   /   │   4   │   5   │   6   │   +   │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │       │   7   │   8   │   9   │   0   │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
+      *                               ┌───────┐                                   ┌───────┐
+      *                               |       |                                   |       |
+      *                               │       ├───────┐                   ┌───────┤       │
+      *                               |       |       |                   |       |       |
+      *                               └───────┤ Enter ├───────┐   ┌───────┤       ├───────┘
+      *                                       |       |       |   |       |       |
+      *                                       └───────┤   .   │   │       ├───────┘
+      *                                               |       |   |       |
+      *                                               └───────┘   └───────┘
+      */
     [L_NUM_L] = LAYOUT_split_3x6_3(
     	TO(0), 		KC_PAST, 		KC_1, 			KC_2, 			KC_3, 			KC_PMNS, 				KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 
     	KC_NO, 		KC_PSLS, 		KC_4,        	KC_5, 			KC_6,         	KC_PPLS, 				KC_NO, 			_______, 		_______, 		_______, 		_______,			KC_NO, 
     	KC_NO, 		KC_NO, 			KC_7, 			KC_8, 			KC_9, 			KC_0, 					KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
-    												KC_NO, 			KC_NO, 			KC_TRNS, 				LCTL(KC_BSPC), 	_______, 		_______),
+    												KC_NO, 			KC_ENTER, 		KC_DOT, 				KC_NO, 			KC_NO, 			KC_NO),
+     /* L_NUM_R Layer
+      *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
+      *     │       │       │       │       │       │       │       │  Bsp  │   7   │   8   │   9   │   -   │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │       │       │       │       │       │       │       │   4   │   5   │   6   │   +   │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │       │       │       │       │       │       │       │   1   │   2   │   3   │   0   │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
+      *                               ┌───────┐                                   ┌───────┐
+      *                               |       |                                   |       |
+      *                               │       ├───────┐                   ┌───────┤   .   │
+      *                               |       |       |                   |       |       |
+      *                               └───────┤       ├───────┐   ┌───────┤ Enter ├───────┘
+      *                                       |       |       |   |       |       |
+      *                                       └───────┤       │   │  Bsp  ├───────┘
+      *                                               |       |   |       |
+      *                                               └───────┘   └───────┘
+      */
     [L_NUM_R] = LAYOUT_split_3x6_3(
-    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO,			KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
+    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_BSPC,		KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
     	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO,			KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 			KC_NO, 
     	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO, 			KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
-    												TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_NO,			KC_ENTER, 		KC_DOT),
+    												TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_BSPC,		KC_ENTER, 		KC_DOT),
      /* SYM Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
       *     │   ^   │   ?   │   =   │   (   │   )   │   ~   │       │   "   │   &   │       │   |   │   +   │   ß   │
@@ -97,16 +139,19 @@ enum combo_events {
     COM_NUM_R_ON,
     COM_NUM_R_OFF,
     COM_ENTER,
+    COM_LEADER
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
 const uint16_t PROGMEM numpad_on_combo[] = {RSFT_T(KC_J), LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
 const uint16_t PROGMEM enter_combo[] = {KC_SPC, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM leader_combo[] = {KC_LSFT, KC_ENTER, COMBO_END};
 
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]  = COMBO_ACTION(numpad_on_combo),
 	[COM_NUM_R_OFF] = COMBO_ACTION(numpad_off_combo),
 	[COM_ENTER] = COMBO_ACTION(enter_combo),
+	[COM_LEADER] = COMBO_ACTION(leader_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
@@ -133,6 +178,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             tap_code(KC_ENTER);
         }
         break;
+
+        case COM_LEADER:
+        if (pressed) 
+        {
+            leader_start();
+        }
+        break;
     }
 }
 
@@ -157,7 +209,7 @@ void keyboard_post_init_user(void)
     keyevent_t is defined in keyboard.h
 */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    static uint16_t key_timer;
+    // static uint16_t key_timer;
 
     if (!host_keyboard_led_state().num_lock)
     {
@@ -165,6 +217,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 
     switch (keycode) {
+    /*
     case LT_LEADER:
         if (record->event.pressed) {
             // Key was pressed
@@ -179,6 +232,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
         return false; // Skip further processing of this key
+    */
     default:
         return true; // Process all other keycodes normally
     }
@@ -302,3 +356,24 @@ void leader_end_user(void) {
         tap_code(KC_MINS);
     } 
 }
+     /* empty Layer
+      *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
+      *                               ┌───────┐                                   ┌───────┐
+      *                               |       |                                   |       |
+      *                               │       ├───────┐                   ┌───────┤       │
+      *                               |       |       |                   |       |       |
+      *                               └───────┤       ├───────┐   ┌───────┤       ├───────┘
+      *                                       |       |       |   |       |       |
+      *                                       └───────┤       │   │       ├───────┘
+      *                                               |       |   |       |
+      *                                               └───────┘   └───────┘
+      */
