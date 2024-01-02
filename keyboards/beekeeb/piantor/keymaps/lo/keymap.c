@@ -266,19 +266,38 @@ void leader_end_user(void) {
     }
     else if (leader_sequence_three_keys(KC_D, KC_E, KC_G)) 
     {
-        //SEND_STRING("°");
+        register_code(KC_LSFT);
+        tap_code(KC_GRV);
+        unregister_code(KC_LSFT);
     }
     else if (leader_sequence_two_keys(KC_F, KC_T)) 
     {
-        //SEND_STRING("´");
+        // front tick ´
+        tap_code(KC_EQL);
+        tap_code(KC_EQL);
+    }
+    else if (leader_sequence_two_keys(KC_F, KC_T)) 
+    {
+        // single quote '
+        tap_code(KC_EQL);
+        tap_code(KC_SPC);
     }
     else if (leader_sequence_two_keys(KC_B, KC_T)) 
     {
+    	// Backtick
         SEND_STRING("`");
+    }
+    else if (leader_sequence_two_keys(KC_T, KC_B)) 
+    {
+    	// Triple Backtick
+        SEND_STRING("```");
     }
     else if (leader_sequence_three_keys(KC_P, KC_E, KC_R)) 
     {
-        //SEND_STRING("%");
+    	// Percent %
+        register_code(KC_LSFT);
+        tap_code(KC_5);
+        unregister_code(KC_LSFT);
     }
     else if (leader_sequence_three_keys(KC_D, KC_O, KC_L)) 
     {
@@ -286,7 +305,9 @@ void leader_end_user(void) {
     }
     else if (leader_sequence_three_keys(KC_E, KC_U, KC_R)) 
     {
-        //SEND_STRING("€");
+        register_code(KC_RALT);
+        tap_code(KC_E);
+        unregister_code(KC_RALT);
     }
     else if (leader_sequence_two_keys(KC_P, KC_M)) 
     {
@@ -298,6 +319,7 @@ void leader_end_user(void) {
     }
         else if (leader_sequence_two_keys(KC_C, KC_B)) 
     {
+    	// Code Block
         SEND_STRING("```");
         tap_code(KC_ENTER);
         tap_code(KC_ENTER);
@@ -306,6 +328,7 @@ void leader_end_user(void) {
     }
     else if (leader_sequence_two_keys(KC_D, KC_S)) 
     {
+    	// double slash
         SEND_STRING("//");
     }
     else if (leader_sequence_two_keys(KC_C, KC_O)) 
@@ -353,6 +376,7 @@ void leader_end_user(void) {
     }
     else if (leader_sequence_two_keys(KC_S, KC_S))
     {
+    	// ß
         tap_code(KC_MINS);
     } 
 }
