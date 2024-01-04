@@ -138,19 +138,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 enum combo_events {
     COM_NUM_R_ON,
     COM_NUM_R_OFF,
-    COM_ENTER,
+    COM_BACKSPACE,
     COM_LEADER
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
 const uint16_t PROGMEM numpad_on_combo[] = {RSFT_T(KC_J), LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
-const uint16_t PROGMEM enter_combo[] = {KC_SPC, KC_BSPC, COMBO_END};
+const uint16_t PROGMEM backspace_combo[] = {KC_I, KC_O, COMBO_END};
 const uint16_t PROGMEM leader_combo[] = {KC_LSFT, KC_ENTER, COMBO_END};
 
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]  = COMBO_ACTION(numpad_on_combo),
 	[COM_NUM_R_OFF] = COMBO_ACTION(numpad_off_combo),
-	[COM_ENTER] = COMBO_ACTION(enter_combo),
+	[COM_BACKSPACE] = COMBO_ACTION(backspace_combo),
 	[COM_LEADER] = COMBO_ACTION(leader_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
@@ -172,10 +172,14 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         }
         break;
 
-        case COM_ENTER:
-        if (pressed) 
+        case COM_BACKSPACE:
+        if (pressed)
         {
-            tap_code(KC_ENTER);
+            register_code(KC_BSPC);
+        }
+        else
+        {
+            unregister_code(KC_BSPC);
         }
         break;
 
@@ -191,10 +195,19 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 /* Needed to make fire combos only if they are tapped. Only working
  * if COMBO_MUST_TAP_PER_COMBO is defined. 
  */
-bool get_combo_must_tap(uint16_t index, combo_t *combo)
+bool get_combo_must_tap(uint16_t combo_index, combo_t *combo)
 {
-	return true;
+    switch(combo_index) 
+    {
+    case COM_BACKSPACE:
+        return false;
+    break;
+
+    default:
+	    return true;
+    }
 }
+
 
 void keyboard_post_init_user(void) 
 {
