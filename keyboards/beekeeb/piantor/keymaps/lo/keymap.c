@@ -415,9 +415,8 @@ void leader_end_user(void) {
     else if (leader_sequence_three_keys(KC_O, KC_M, KC_I))
     {
     	// obsidian math inline
-        SEND_STRING("$$");
-        SEND_STRING("$$");
-        tap_code(KC_LEFT);
+        SEND_STRING("$");
+        SEND_STRING("$");
         tap_code(KC_LEFT);
     }
 }
