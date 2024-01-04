@@ -139,19 +139,22 @@ enum combo_events {
     COM_NUM_R_ON,
     COM_NUM_R_OFF,
     COM_BACKSPACE,
+    COM_ENTER,
     COM_LEADER
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
 const uint16_t PROGMEM numpad_on_combo[] = {RSFT_T(KC_J), LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
 const uint16_t PROGMEM backspace_combo[] = {KC_I, KC_O, COMBO_END};
+const uint16_t PROGMEM enter_combo[] = {LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
 const uint16_t PROGMEM leader_combo[] = {KC_LSFT, KC_ENTER, COMBO_END};
 
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]  = COMBO_ACTION(numpad_on_combo),
 	[COM_NUM_R_OFF] = COMBO_ACTION(numpad_off_combo),
 	[COM_BACKSPACE] = COMBO_ACTION(backspace_combo),
-	[COM_LEADER] = COMBO_ACTION(leader_combo),
+    [COM_ENTER]     = COMBO_ACTION(enter_combo),
+	[COM_LEADER]    = COMBO_ACTION(leader_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
@@ -180,6 +183,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         else
         {
             unregister_code(KC_BSPC);
+        }
+        break;
+
+        case COM_ENTER:
+        if (pressed) 
+        {
+            tap_code(KC_ENTER);
         }
         break;
 
