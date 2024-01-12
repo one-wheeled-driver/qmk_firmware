@@ -384,7 +384,7 @@ void leader_end_user(void) {
     {
         SEND_STRING(WORK_MAIL);
     }
-        else if (leader_sequence_two_keys(KC_C, KC_B)) 
+    else if (leader_sequence_two_keys(KC_C, KC_B)) 
     {
     	// Code Block
         SEND_STRING("```");
@@ -392,6 +392,12 @@ void leader_end_user(void) {
         tap_code(KC_ENTER);
         SEND_STRING("```");
         tap_code(KC_UP);
+    }
+    else if (leader_sequence_two_keys(KC_C, KC_I)) 
+    {
+    	// Code Inline
+        SEND_STRING("``");
+        tap_code(KC_LEFT);
     }
     else if (leader_sequence_two_keys(KC_D, KC_S)) 
     {
