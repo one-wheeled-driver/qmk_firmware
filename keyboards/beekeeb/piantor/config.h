@@ -13,9 +13,8 @@
 
 // Configure the global tapping term (default: 200ms)
 #define TAPPING_TERM 200
-
 // Enable rapid switch from tap to hold, disables double tap hold auto-repeat.
-#define TAPPING_FORCE_HOLD
+#define QUICK_TAP_TERM 0
 
 #define LEADER_PER_KEY_TIMING
 #define LEADER_TIMEOUT 350
@@ -25,3 +24,4 @@
 #define COMBO_MUST_TAP_PER_COMBO
 
 #define COMBO_TERM 30
+
