@@ -15,6 +15,7 @@ enum layers {
 
 enum custom_keycodes {
     LT_LEADER = SAFE_RANGE,
+    LT_HAT,
 };
 
 
@@ -125,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                                               └───────┘   └───────┘
       */
     [L_SYM] = LAYOUT_split_3x6_3(
-    	KC_CIRC, 	LSFT(KC_MINS),	LSFT(KC_0),		LSFT(KC_8),		LSFT(KC_9),		RALT(KC_RBRC),			LSFT(KC_2),		LSFT(KC_6),		LSFT(KC_NUHS),	RALT(KC_NUBS),	KC_RBRC, 			KC_MINS,
+    	LT_HAT, 	LSFT(KC_MINS),	LSFT(KC_0),		LSFT(KC_8),		LSFT(KC_9),		RALT(KC_RBRC),			LSFT(KC_2),		LSFT(KC_6),		LSFT(KC_NUHS),	RALT(KC_NUBS),	KC_RBRC, 			KC_MINS,
     	KC_NO,		LSFT(KC_1),		KC_NUBS,		RALT(KC_7),		RALT(KC_0),		RSFT(KC_NUBS),			KC_NUHS,		KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
     	KC_NO,		KC_NO,			KC_NO,			RALT(KC_8),		RALT(KC_9),		RALT(KC_MINS),			LSFT(KC_7),		LSFT(KC_RBRC),	KC_NO,			KC_NO,			KC_NO,				KC_NO,
     												KC_NO,			KC_NO,			KC_NO,					TO(0), 			KC_NO,			KC_NO),
@@ -304,7 +305,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
         }
         return false; // Skip further processing of this key
+    break;
     */
+    case LT_HAT:
+        if (record->event.pressed) {
+            // Key was pressed
+            tap_code(KC_GRV);
+            tap_code(KC_SPC);
+        }
+        return false;
+    break;
+
     default:
         return true; // Process all other keycodes normally
     }
