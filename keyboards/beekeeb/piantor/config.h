@@ -17,11 +17,12 @@
 #define QUICK_TAP_TERM 0
 
 #define LEADER_PER_KEY_TIMING
-#define LEADER_TIMEOUT 350
+#define LEADER_TIMEOUT 450
 #define LEADER_NO_TIMEOUT
 	/* only no timeout for the first key to press, afterwards the LEADER_TIMEOUT counts */
 
 #define COMBO_MUST_TAP_PER_COMBO
 
-#define COMBO_TERM 30
+#define COMBO_TERM 50
+	/* Default is 50ms */
 
