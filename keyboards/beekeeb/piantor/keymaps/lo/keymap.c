@@ -151,14 +151,18 @@ enum combo_events {
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
 const uint16_t PROGMEM numpad_on_combo[] = {RSFT_T(KC_J), LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
-const uint16_t PROGMEM backspace_combo[] = {KC_I, KC_O, COMBO_END};
-const uint16_t PROGMEM backspace_num_combo[] = {KC_P8, KC_P9, COMBO_END};
-const uint16_t PROGMEM backspace_word_combo[] = {KC_U, KC_I, KC_O, COMBO_END};
+
+const uint16_t PROGMEM backspace_combo[] = {KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM backspace_num_combo[] = {KC_P8, KC_P9, KC_P7, COMBO_END};
+const uint16_t PROGMEM backspace_word_combo[] = {KC_O, KC_I, KC_U, COMBO_END};
+
 const uint16_t PROGMEM entf_combo[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM entf_num_combo[] = {KC_P7, KC_P8, COMBO_END};
+
 const uint16_t PROGMEM enter_combo[] = {LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
 const uint16_t PROGMEM enter_num_combo[] = {KC_P5, KC_P6, COMBO_END};
-const uint16_t PROGMEM leader_combo[] = {KC_E, KC_R, COMBO_END};
+
+const uint16_t PROGMEM leader_combo[] = {KC_E, KC_R, KC_W, COMBO_END};
 
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]       = COMBO_ACTION(numpad_on_combo),
@@ -276,10 +280,12 @@ void keyboard_post_init_user(void)
 */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // static uint16_t key_timer;
+    static bool num_lock_once = false;
 
-    if (!host_keyboard_led_state().num_lock)
+    if (!host_keyboard_led_state().num_lock && !num_lock_once)
     {
         tap_code(KC_NUM_LOCK);
+        num_lock_once = true;
     }
 
     switch (keycode) {
@@ -321,12 +327,12 @@ void leader_end_user(void) {
     {
         SEND_STRING("./");
     }
-    else if (leader_sequence_two_keys(KC_E, KC_X)) 
+    else if (leader_sequence_one_key(KC_E)) 
     {
         SEND_STRING("cd /home/lo/data/git_repos/extern/");
         tap_code(KC_ENTER);
     }
-    else if (leader_sequence_three_keys(KC_E, KC_X, KC_T))
+    else if (leader_sequence_two_keys(KC_E, KC_T))
     {
         SEND_STRING("/home/lo/data/git_repos/extern/extern.py");
         tap_code(KC_ENTER);
@@ -343,7 +349,7 @@ void leader_end_user(void) {
         tap_code(KC_EQL);
         tap_code(KC_EQL);
     }
-    else if (leader_sequence_two_keys(KC_F, KC_T)) 
+    else if (leader_sequence_two_keys(KC_S, KC_Q)) 
     {
         // single quote '
         tap_code(KC_EQL);
@@ -368,15 +374,17 @@ void leader_end_user(void) {
     }
     else if (leader_sequence_three_keys(KC_D, KC_O, KC_L)) 
     {
+        // $
         SEND_STRING("$");
     }
     else if (leader_sequence_three_keys(KC_E, KC_U, KC_R)) 
     {
+        // €
         register_code(KC_RALT);
         tap_code(KC_E);
         unregister_code(KC_RALT);
     }
-    else if (leader_sequence_two_keys(KC_P, KC_M)) 
+    else if (leader_sequence_one_key(KC_M)) 
     {
         SEND_STRING(PRIVATE_MAIL);
     }
