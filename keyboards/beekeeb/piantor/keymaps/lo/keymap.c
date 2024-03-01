@@ -153,7 +153,7 @@ enum combo_events {
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
 const uint16_t PROGMEM numpad_on_combo[] = {RSFT_T(KC_J), LT(L_NUM_L,KC_K), RGUI_T(KC_L), COMBO_END};
 
-const uint16_t PROGMEM backspace_combo[] = {KC_O, KC_P, COMBO_END};
+const uint16_t PROGMEM backspace_combo[] = {KC_O, KC_I, COMBO_END};
 const uint16_t PROGMEM backspace_num_combo[] = {KC_P8, KC_P9, KC_P7, COMBO_END};
 const uint16_t PROGMEM backspace_word_combo[] = {KC_O, KC_I, KC_U, COMBO_END};
 
