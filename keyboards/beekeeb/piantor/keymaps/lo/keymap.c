@@ -281,12 +281,10 @@ void keyboard_post_init_user(void)
 */
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // static uint16_t key_timer;
-    static bool num_lock_once = false;
 
-    if (!host_keyboard_led_state().num_lock && !num_lock_once)
+    if (!host_keyboard_led_state().num_lock)
     {
         tap_code(KC_NUM_LOCK);
-        num_lock_once = true;
     }
 
     switch (keycode) {
