@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       */
     [L_NUM_R] = LAYOUT_split_3x6_3(
     	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE),		TO(L_BASE), 	TO(L_BASE), 			KC_PMNS,		KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
-    	TO(L_BASE), _______,           _______, 	_______, 		_______, 		TO(L_BASE), 			KC_PPLS,		KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 	       	KC_NO, 
+    	_______   , _______,           _______, 	_______, 		_______, 		TO(L_BASE), 			KC_PPLS,		KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 	       	KC_NO, 
     	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_PSLS,		KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
     												TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_P0,			KC_DOT, 		KC_PDOT),
      /* SYM Layer
