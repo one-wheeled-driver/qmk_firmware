@@ -509,6 +509,11 @@ void leader_end_user(void) {
         SEND_STRING("$");
         tap_code(KC_LEFT);
     }
+    else if (leader_sequence_three_keys(KC_O, KC_M, KC_E))
+    {
+        // obsidian math inline
+        SEND_STRING("$\\Omega$");
+    }
 }
      /* empty Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
