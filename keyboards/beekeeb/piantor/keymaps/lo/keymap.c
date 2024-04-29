@@ -333,7 +333,7 @@ bool led_update_user(led_t led_state) {
 }
 
 void leader_end_user(void) {
-
+    uint16_t i;
     if (leader_sequence_two_keys(KC_A, KC_T)) 
     {
         SEND_STRING("@");
@@ -519,6 +519,23 @@ void leader_end_user(void) {
     {
         // obsidian math inline
         SEND_STRING("$\\Omega$");
+    }
+    else if (leader_sequence_two_keys(KC_O, KC_V))
+    {
+        // obsidian paste
+        register_code(KC_LCTL);
+        tap_code(KC_V);
+        wait_ms(300);
+        unregister_code(KC_LCTL);
+        for (i = 0; i < 35; i++)
+        {
+            tap_code(KC_LEFT);
+        }
+        tap_code(KC_BSPC);
+        for (i = 0; i < 35; i++)
+        {
+            tap_code(KC_RGHT);
+        }
     }
 }
      /* empty Layer
