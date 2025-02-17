@@ -398,6 +398,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         return false;
     break;
 
+    case KC_END:
+    case KC_HOME:  // KC_HOME is often the Pos1 key
+        if (record->event.pressed) {
+            // Check if Ctrl is held down
+            if (get_mods() & MOD_MASK_CTRL) {
+                uint8_t mods = get_mods();       // Save current modifiers
+                set_mods(mods & ~MOD_MASK_CTRL); // Remove CTL mod
+                tap_code16(keycode);             // Send the key without Ctrl (Shift remains if held)
+                set_mods(mods);                  // Restore modifiers as before
+                return false;                    // Skip default processing for this key
+            }
+        }
+        /* if not pressed during CTRL modifier is active, process normally */
+        return true;
+    break;
+
     default:
         return true; // Process all other keycodes normally
     }
