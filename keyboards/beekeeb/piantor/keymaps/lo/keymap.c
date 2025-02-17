@@ -3,6 +3,9 @@
 
 #include QMK_KEYBOARD_H
 #include "sendstring_german.h"
+#include "print.h"
+#include "private.h"
+
 
 enum layers {
 	L_BASE = 0,
@@ -51,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     	TO(0), 		KC_PAST, 		KC_1, 			KC_2, 			KC_3, 			KC_PMNS, 				KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 
     	KC_NO, 		KC_PSLS, 		KC_4,        	KC_5, 			KC_6,         	KC_PPLS, 				KC_NO, 			_______, 		_______, 		_______, 		_______,			KC_NO, 
     	KC_NO, 		KC_NO, 			KC_7, 			KC_8, 			KC_9, 			KC_PSLS, 				KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO,
-    												KC_PDOT, 		KC_DOT, 		KC_P0, 					KC_NO, 			KC_NO, 			KC_NO),
+    												KC_PDOT, 		KC_DOT, 		KC_0, 					KC_NO, 			KC_NO, 			KC_NO),
      /* L_NUM_R Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
       *     │       │       │       │  up   │       │       │       │   -   │   7   │   8   │   9   │   -   │       │
@@ -150,7 +153,8 @@ enum combo_events {
     COM_ENTER_NUM,
     COM_ENTF,
     COM_ENTF_NUM,
-    COM_LEADER
+    COM_LEADER,
+    COM_SS
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
@@ -169,6 +173,8 @@ const uint16_t PROGMEM enter_num_combo[] = {KC_P5, KC_P6, COMBO_END};
 
 const uint16_t PROGMEM leader_combo[] = {KC_E, KC_R, KC_W, COMBO_END};
 
+const uint16_t PROGMEM ss_combo[] = {LGUI_T(KC_S), LCTL_T(KC_A), COMBO_END};
+
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]           = COMBO_ACTION(numpad_on_combo),
 	[COM_NUM_R_OFF]          = COMBO_ACTION(numpad_off_combo),
@@ -181,6 +187,7 @@ combo_t key_combos[] = {
     [COM_BACKSPACE_WORD]     = COMBO_ACTION(backspace_word_combo),
     [COM_BACKSPACE_NUM_WORD] = COMBO_ACTION(backspace_num_word_combo),
 	[COM_LEADER]             = COMBO_ACTION(leader_combo),
+    [COM_SS]                 = COMBO_ACTION(ss_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
@@ -206,7 +213,11 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         if (pressed) 
         {
         	register_code(KC_LCTL);
-            tap_code(KC_BSPC);
+            register_code(KC_BSPC);
+        }
+        else
+        {
+            unregister_code(KC_BSPC);
             unregister_code(KC_LCTL);
         }
         break;
@@ -250,6 +261,13 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             leader_start();
         }
         break;
+
+        case COM_SS:
+        if (pressed) 
+        {
+            tap_code(KC_MINS);
+        }
+        break;
     }
 }
 
@@ -262,6 +280,8 @@ bool get_combo_must_tap(uint16_t combo_index, combo_t *combo)
     {
     case COM_BACKSPACE:
     case COM_BACKSPACE_NUM:
+    case COM_BACKSPACE_WORD:
+    case COM_BACKSPACE_NUM_WORD:
     case COM_ENTF:
     case COM_ENTF_NUM:
         return false;
@@ -399,13 +419,25 @@ void leader_end_user(void) {
         tap_code(KC_E);
         unregister_code(KC_RALT);
     }
-    else if (leader_sequence_one_key(KC_M)) 
+    else if (leader_sequence_two_keys(KC_P, KC_M)) 
     {
         SEND_STRING(PRIVATE_MAIL);
     }
     else if (leader_sequence_two_keys(KC_W, KC_M)) 
     {
         SEND_STRING(WORK_MAIL);
+    }
+    else if (leader_sequence_two_keys(KC_V, KC_N)) 
+    {
+        SEND_STRING(FIRST_NAME);
+    }
+    else if (leader_sequence_two_keys(KC_N, KC_N)) 
+    {
+        SEND_STRING(LAST_NAME);
+    }
+    else if (leader_sequence_two_keys(KC_F, KC_N)) 
+    {
+        SEND_STRING(FULL_NAME);
     }
     else if (leader_sequence_two_keys(KC_C, KC_B)) 
     {
