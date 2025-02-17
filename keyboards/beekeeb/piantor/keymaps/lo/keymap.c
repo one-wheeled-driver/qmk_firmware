@@ -83,13 +83,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     												TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_P0,			KC_DOT, 		KC_PDOT),
      /* SYM Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
-      *     │   ^   │   ?   │   =   │   (   │   )   │   ~   │       │   "   │   &   │   '   │   |   │   +   │   ß   │
+      *     │   ^   │   ?   │   (   │   =   │   )   │   ~   │       │   "   │   &   │   '   │   |   │   +   │   ß   │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │       │   !   │   <   │   {   │   }   │   >   │       │   #   │       │       │       │       │       │
+      *     │       │   !   │   {   │       │   }   │   >   │       │   #   │       │       │   <   │       │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │       │       │       │   [   │   ]   │   \   │       │   /   │   *   │       │       │       │       │
+      *     │       │       │   [   │       │   ]   │   \   │       │   /   │   *   │       │       │       │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
       *                               ┌───────┐                                   ┌───────┐
@@ -103,9 +103,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                                               └───────┘   └───────┘
       */
     [L_SYM] = LAYOUT_split_3x6_3(
-    	LT_HAT, 	LSFT(KC_MINS),	LSFT(KC_0),		LSFT(KC_8),		LSFT(KC_9),		RALT(KC_RBRC),			LSFT(KC_2),		LSFT(KC_6),		LSFT(KC_NUHS),	RALT(KC_NUBS),	KC_RBRC, 			KC_MINS,
-    	KC_NO,		LSFT(KC_1),		KC_NUBS,		RALT(KC_7),		RALT(KC_0),		RSFT(KC_NUBS),			KC_NUHS,		KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
-    	KC_NO,		KC_NO,			KC_NO,			RALT(KC_8),		RALT(KC_9),		RALT(KC_MINS),			LSFT(KC_7),		LSFT(KC_RBRC),	KC_NO,			KC_NO,			KC_NO,				KC_NO,
+    	LT_HAT, 	LSFT(KC_MINS),	LSFT(KC_8),		LSFT(KC_0),		LSFT(KC_9),		RALT(KC_RBRC),			LSFT(KC_2),		LSFT(KC_6),		LSFT(KC_NUHS),	RALT(KC_NUBS),	KC_RBRC, 			KC_MINS,
+    	KC_NO,		LSFT(KC_1),		RALT(KC_7),		KC_NO,			RALT(KC_0),		RSFT(KC_NUBS),			KC_NUHS,		KC_NO,			KC_NUBS,		KC_NO,			KC_NO,				KC_NO,
+    	KC_NO,		KC_NO,			RALT(KC_8), 	KC_NO,			RALT(KC_9),		RALT(KC_MINS),			LSFT(KC_7),		LSFT(KC_RBRC),	KC_NO,			KC_NO,			KC_NO,				KC_NO,
     												KC_NO,			KC_NO,			KC_NO,					TO(0), 			KC_NO,			KC_NO),
 
     [L_NAV] = LAYOUT_split_3x6_3(
