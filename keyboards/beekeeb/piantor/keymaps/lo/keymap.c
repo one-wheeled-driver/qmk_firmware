@@ -139,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     	TO(0),		KC_NO,			KC_F1,			KC_F2,			KC_F3,			KC_F12,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
     	KC_NO,		KC_NO,			KC_F4,			KC_F5,			KC_F6,			KC_F11,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_TRNS,			KC_NO,
     	KC_NO,		KC_NO,			KC_F7,			KC_F8,			KC_F9,			KC_F10,					KC_NO,			KC_TRNS,		KC_NO,			KC_NO,			KC_NO,				KC_NO,
-    												KC_NO,			KC_NO,			KC_NO,					KC_NO,			KC_NO,			KC_NO),
+    												_______,		_______,		KC_NO,					KC_NO,			KC_NO,			KC_NO),
 };
 
 enum combo_events {
@@ -154,7 +154,8 @@ enum combo_events {
     COM_ENTF,
     COM_ENTF_NUM,
     COM_LEADER,
-    COM_SS
+    COM_SS,
+    COM_FN
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
@@ -175,6 +176,8 @@ const uint16_t PROGMEM leader_combo[] = {KC_E, KC_R, KC_W, COMBO_END};
 
 const uint16_t PROGMEM ss_combo[] = {LGUI_T(KC_S), KC_Y, COMBO_END};
 
+const uint16_t PROGMEM fn_combo[] = {RSFT_T(KC_J), KC_I, COMBO_END};
+
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]           = COMBO_ACTION(numpad_on_combo),
 	[COM_NUM_R_OFF]          = COMBO_ACTION(numpad_off_combo),
@@ -188,6 +191,7 @@ combo_t key_combos[] = {
     [COM_BACKSPACE_NUM_WORD] = COMBO_ACTION(backspace_num_word_combo),
 	[COM_LEADER]             = COMBO_ACTION(leader_combo),
     [COM_SS]                 = COMBO_ACTION(ss_combo),
+    [COM_FN]                 = COMBO_ACTION(fn_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
@@ -268,6 +272,17 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             tap_code(KC_MINS);
         }
         break;
+
+        case COM_FN:
+        if (pressed) 
+        {
+            layer_on(L_F);
+        }
+        else
+        {
+        	layer_off(L_F);
+        }
+        break;
     }
 }
 
@@ -284,6 +299,7 @@ bool get_combo_must_tap(uint16_t combo_index, combo_t *combo)
     case COM_BACKSPACE_NUM_WORD:
     case COM_ENTF:
     case COM_ENTF_NUM:
+    case COM_FN:
         return false;
     break;
 
