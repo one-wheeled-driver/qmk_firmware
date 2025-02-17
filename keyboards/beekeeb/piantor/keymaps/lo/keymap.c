@@ -173,7 +173,7 @@ const uint16_t PROGMEM enter_num_combo[] = {KC_P5, KC_P6, COMBO_END};
 
 const uint16_t PROGMEM leader_combo[] = {KC_E, KC_R, KC_W, COMBO_END};
 
-const uint16_t PROGMEM ss_combo[] = {LGUI_T(KC_S), LCTL_T(KC_A), COMBO_END};
+const uint16_t PROGMEM ss_combo[] = {LGUI_T(KC_S), KC_Y, COMBO_END};
 
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]           = COMBO_ACTION(numpad_on_combo),
