@@ -13,7 +13,8 @@ enum layers {
 	L_NUM_R,
 	L_SYM,
     L_NAV,
-	L_F
+	L_F,
+	L_MEDIA
 };
 
 enum custom_keycodes {
@@ -30,7 +31,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
       *     │  Tab  │   A   │   S   │   D   │   F   │   G   │       │   H   │   J   │   K   │   L   │   Ö   │   Ä   │
       *     │       │  Ctl  │  Gui  │  NAV  │  Sft  │       │       │       │  Sft  │  SYM  │  Gui  │  Ctl  │       │
-      *     │       │       │       │       │       │       │       │       │       │     Enter     │       │       │
+      *     │     Media     │       │       │       │       │       │       │     Enter     │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
       *     │  Sft  │   Y   │   X   │   C   │   V   │   B   │       │   N   │   M   │   ,   │   .   │   -   │ Repeat│
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
@@ -50,6 +51,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,		LCTL_T(KC_A),	LGUI_T(KC_S),	LT(L_NAV, KC_D),LSFT_T(KC_F),	KC_G,					KC_H,			RSFT_T(KC_J),	LT(L_NUM_L,KC_K),RGUI_T(KC_L),	RCTL_T(KC_SCLN),	KC_QUOT, 
         KC_LSFT, 	KC_Z, 			KC_X, 			KC_C, 			KC_V, 			KC_B, 					KC_N, 			KC_M, 			KC_COMM, 		KC_DOT, 		KC_SLSH, 			QK_REP, 
         											KC_LCTL,    	KC_LSFT, 		MO(L_SYM),	          	MO(L_SYM),		KC_SPC, 		KC_RCTL),
+     /* L_NUM_L Layer
+      *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
+      *     │       │   *   │   1   │   2   │   3   │   -   │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │   /   │   4   │   5   │   6   │   +   │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
+      *     │       │       │   7   │   8   │   9   │   /   │       │       │       │       │       │       │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
+      *                               ┌───────┐                                   ┌───────┐
+      *                               |       |                                   |       |
+      *                               │   ,   ├───────┐                   ┌───────┤       │
+      *                               |       |       |                   |       |       |
+      *                               └───────┤   .   ├───────┐   ┌───────┤       ├───────┘
+      *                                       |       |       |   |       |       |
+      *                                       └───────┤   0   │   │       ├───────┘
+      *                                               |       |   |       |
+      *                                               └───────┘   └───────┘
+      */
     [L_NUM_L] = LAYOUT_split_3x6_3(
     	TO(0), 		KC_PAST, 		KC_1, 			KC_2, 			KC_3, 			KC_PMNS, 				KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 			KC_NO, 				KC_NO, 
     	KC_NO, 		KC_PSLS, 		KC_4,        	KC_5, 			KC_6,         	KC_PPLS, 				KC_NO, 			_______, 		_______, 		_______, 		_______,			KC_NO, 
@@ -57,11 +79,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     												KC_PDOT, 		KC_DOT, 		KC_0, 					KC_NO, 			KC_NO, 			KC_NO),
      /* L_NUM_R Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
-      *     │       │       │       │  up   │       │       │       │   -   │   7   │   8   │   9   │   -   │       │
+      *     │       │       │       │       │       │       │       │   -   │   7   │   8   │   9   │   -   │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │       │       │ left  │  down │ right │       │       │   +   │   4   │   5   │   6   │   +   │       │
-      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
+      *     │       │   A   │   S   │   D   │   F   │       │       │   +   │   4   │   5   │   6   │   +   │       │
+      *     │       │  CTL  │  Gui  │  NAV  │  Sft  │       │       │       │       │       │       │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
       *     │       │       │       │       │       │       │       │   /   │   1   │   2   │   3   │   0   │       │
       *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
@@ -77,9 +99,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *                                               └───────┘   └───────┘
       */
     [L_NUM_R] = LAYOUT_split_3x6_3(
-    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE),		TO(L_BASE), 	TO(L_BASE), 			KC_PMNS,		KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
-    	_______   , _______,           _______, 	_______, 		_______, 		TO(L_BASE), 			KC_PPLS,		KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 	       	KC_NO, 
-    	TO(L_BASE), TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_PSLS,		KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
+    	TO(L_BASE),	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE),		TO(L_BASE), 	TO(L_BASE), 			KC_PMNS,		KC_P7,			KC_P8, 			KC_P9,			KC_PMNS, 			KC_NO, 
+    	TO(L_BASE),	_______,           _______, 	_______, 		_______, 		TO(L_BASE), 			KC_PPLS,		KC_P4,			KC_P5,			KC_P6,			KC_PPLS, 	       	KC_NO, 
+    	TO(L_BASE),	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_PSLS,		KC_P1, 			KC_P2, 			KC_P3, 			KC_P0, 				KC_NO,
     												TO(L_BASE), 	TO(L_BASE), 	TO(L_BASE), 			KC_P0,			KC_DOT, 		KC_PDOT),
      /* SYM Layer
       *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
@@ -113,33 +135,38 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,    _______,        _______,        _______,        _______,        _______,                LCTL(KC_PGDN),  KC_LEFT,        KC_DOWN,        KC_RGHT,        MO(3),              KC_NO, 
         _______,    _______,        _______,        _______,        _______,        _______,                TO(1),          KC_NO,          KC_NO,          KC_NO,          KC_NO,              KC_NO,
                                                     _______,        _______,        _______,                KC_DEL,         KC_ENTER,       LCTL(KC_BSPC)),
-     /* L_NUM_L Layer
-      *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬───────┬───────┐
-      *     │       │   *   │   1   │   2   │   3   │   -   │       │       │       │       │       │       │       │
-      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
-      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │       │   /   │   4   │   5   │   6   │   +   │       │       │       │       │       │       │       │
-      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
-      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
-      *     │       │       │   7   │   8   │   9   │   /   │       │       │       │       │       │       │       │
-      *     │       │       │       │       │       │       │       │       │       │       │       │       │       │
-      *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
+
+    [L_F] = LAYOUT_split_3x6_3(
+    	KC_NO,		KC_NO,			KC_F1,			KC_F2,			KC_F3,			KC_F12,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
+    	KC_NO,		KC_NO,			KC_F4,			KC_F5,			KC_F6,			KC_F11,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
+    	KC_NO,		KC_NO,			KC_F7,			KC_F8,			KC_F9,			KC_F10,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
+    												_______,		_______,		KC_NO,					KC_NO,			KC_NO,			KC_NO),
+     /* Media Layer
+      *     ┌───────┬───────┬───────┬───────┬───────┬───────┐       ┌───────┬───────┬───────┬───────┬──────────┬───────┐
+      *     │       │       │       │       │       │       │       │ Nxt Tr│ VOL up│       │       │ ply/paus │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │          │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼──────────┼───────┤
+      *     │       │       │       │       │       │       │       │ Prv TR│ Vol dn│       │       │          │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │          │       │
+      *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼──────────┼───────┤
+      *     │       │       │       │       │       │       │       │       │ mute  │       │       │          │       │
+      *     │       │       │       │       │       │       │       │       │       │       │       │          │       │
+      *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴──────────┴───────┘
       *                               ┌───────┐                                   ┌───────┐
       *                               |       |                                   |       |
-      *                               │   ,   ├───────┐                   ┌───────┤       │
+      *                               │       ├───────┐                   ┌───────┤       │
       *                               |       |       |                   |       |       |
-      *                               └───────┤   .   ├───────┐   ┌───────┤       ├───────┘
+      *                               └───────┤       ├───────┐   ┌───────┤       ├───────┘
       *                                       |       |       |   |       |       |
-      *                                       └───────┤   0   │   │       ├───────┘
+      *                                       └───────┤       │   │       ├───────┘
       *                                               |       |   |       |
       *                                               └───────┘   └───────┘
       */
-
-    [L_F] = LAYOUT_split_3x6_3(
-    	TO(0),		KC_NO,			KC_F1,			KC_F2,			KC_F3,			KC_F12,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,				KC_NO,
-    	KC_NO,		KC_NO,			KC_F4,			KC_F5,			KC_F6,			KC_F11,					KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_TRNS,			KC_NO,
-    	KC_NO,		KC_NO,			KC_F7,			KC_F8,			KC_F9,			KC_F10,					KC_NO,			KC_TRNS,		KC_NO,			KC_NO,			KC_NO,				KC_NO,
-    												_______,		_______,		KC_NO,					KC_NO,			KC_NO,			KC_NO),
+    [L_MEDIA] = LAYOUT_split_3x6_3(
+    	KC_NO,		KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,					KC_MEDIA_NEXT_TRACK,	KC_AUDIO_VOL_UP,	KC_NO,			KC_NO,			KC_MEDIA_PLAY_PAUSE,	KC_NO,
+    	KC_NO,		KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,					KC_MEDIA_PREV_TRACK,	KC_AUDIO_VOL_DOWN,	KC_NO,			KC_NO,			KC_NO,					KC_NO,
+    	KC_NO,		KC_NO,			KC_NO,			KC_NO,			KC_NO,			KC_NO,					KC_NO,					KC_AUDIO_MUTE,		KC_NO,			KC_NO,			KC_NO,					KC_NO,
+    												_______,		_______,		KC_NO,					KC_NO,					KC_NO,				KC_NO),
 };
 
 enum combo_events {
@@ -155,7 +182,8 @@ enum combo_events {
     COM_ENTF_NUM,
     COM_LEADER,
     COM_SS,
-    COM_FN
+    COM_FN,
+    COM_MEDIA
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
@@ -176,7 +204,8 @@ const uint16_t PROGMEM leader_combo[] = {KC_E, KC_R, KC_W, COMBO_END};
 
 const uint16_t PROGMEM ss_combo[] = {LGUI_T(KC_S), KC_Y, COMBO_END};
 
-const uint16_t PROGMEM fn_combo[] = {RSFT_T(KC_J), KC_I, COMBO_END};
+const uint16_t PROGMEM fn_combo[]    = {RSFT_T(KC_J), KC_I, COMBO_END};
+const uint16_t PROGMEM media_combo[] = {KC_TAB, LCTL_T(KC_A), COMBO_END};
 
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]           = COMBO_ACTION(numpad_on_combo),
@@ -192,6 +221,7 @@ combo_t key_combos[] = {
 	[COM_LEADER]             = COMBO_ACTION(leader_combo),
     [COM_SS]                 = COMBO_ACTION(ss_combo),
     [COM_FN]                 = COMBO_ACTION(fn_combo),
+    [COM_MEDIA]              = COMBO_ACTION(media_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
@@ -283,6 +313,17 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         	layer_off(L_F);
         }
         break;
+
+        case COM_MEDIA:
+        if (pressed) 
+        {
+            layer_on(L_MEDIA);
+        }
+        else
+        {
+        	layer_off(L_MEDIA);
+        }
+        break;
     }
 }
 
@@ -300,6 +341,7 @@ bool get_combo_must_tap(uint16_t combo_index, combo_t *combo)
     case COM_ENTF:
     case COM_ENTF_NUM:
     case COM_FN:
+    case COM_MEDIA:
         return false;
     break;
 
