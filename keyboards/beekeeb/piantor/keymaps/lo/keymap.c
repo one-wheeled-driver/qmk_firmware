@@ -30,7 +30,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *     │       │       │       │    LEADER     │       │       │       │      DEL     Bsp      │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
       *     │  Tab  │   A   │   S   │   D   │   F   │   G   │       │   H   │   J   │   K   │   L   │   Ö   │   Ä   │
-      *     │       │  Ctl  │  Gui  │  NAV  │  Sft  │       │       │       │  Sft  │  SYM  │  Gui  │  Ctl  │       │
+      *     │       │  Ctl  │  Gui  │  NAV  │  Sft  │       │       │       │  Sft  │  NUM  │  Gui  │  Ctl  │       │
       *     │     Media     │       │       │       │       │       │       │     Enter     │       │       │
       *     ├───────┼───────┼───────┼───────┼───────┼───────┤       ├───────┼───────┼───────┼───────┼───────┼───────┤
       *     │  Sft  │   Y   │   X   │   C   │   V   │   B   │       │   N   │   M   │   ,   │   .   │   -   │ Repeat│
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       *     └───────┴───────┴───────┴───────┴───────┴───────┘       └───────┴───────┴───────┴───────┴───────┴───────┘
       *                               ┌───────┐                                   ┌───────┐
       *                               |       |                                   |       |
-      *                               │  CTL  ├───────┐                   ┌───────┤  Bsp  │
+      *                               │  CTL  ├───────┐                   ┌───────┤  CTL  │
       *                               |       |       |                   |       |       |
       *                               └───────┤  Sft  ├───────┐   ┌───────┤ Space ├───────┘
       *                                       |       |       |   |       |       |
@@ -207,6 +207,7 @@ const uint16_t PROGMEM ss_combo[] = {LGUI_T(KC_S), KC_Y, COMBO_END};
 const uint16_t PROGMEM fn_combo[]    = {RSFT_T(KC_J), KC_I, COMBO_END};
 const uint16_t PROGMEM media_combo[] = {KC_TAB, LCTL_T(KC_A), COMBO_END};
 
+
 combo_t key_combos[] = {
 	[COM_NUM_R_ON]           = COMBO_ACTION(numpad_on_combo),
 	[COM_NUM_R_OFF]          = COMBO_ACTION(numpad_off_combo),
@@ -355,6 +356,11 @@ void keyboard_post_init_user(void)
 {
     /* tried sending Keycode here (for dealing with NUM_LOCK),
     but did not work */
+    // Customise these values to desired behaviour
+    //debug_enable=true;
+    //debug_matrix=true;
+    //debug_keyboard=true;
+    //debug_mouse=true;
 }
 
 /*  gets called everytime a key is pressed. Return value defines if
@@ -540,6 +546,18 @@ void leader_end_user(void) {
     else if (leader_sequence_two_keys(KC_F, KC_N)) 
     {
         SEND_STRING(FULL_NAME);
+    }
+    else if (leader_sequence_three_keys(KC_T, KC_E, KC_L))
+    {
+        SEND_STRING(TEL_NUMBER);
+    }
+    else if (leader_sequence_four_keys(KC_T, KC_E, KC_L, KC_S))
+    {
+        SEND_STRING(TEL_NUMBER_SPACES);
+    }
+    else if (leader_sequence_four_keys(KC_T, KC_E, KC_L, KC_L))
+    {
+        SEND_STRING(TEL_NUMBER_LOCAL);
     }
     else if (leader_sequence_two_keys(KC_C, KC_B)) 
     {
