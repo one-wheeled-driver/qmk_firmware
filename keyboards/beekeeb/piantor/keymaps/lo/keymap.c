@@ -183,7 +183,8 @@ enum combo_events {
     COM_LEADER,
     COM_SS,
     COM_FN,
-    COM_MEDIA
+    COM_MEDIA,
+    COM_DOT_SLASH
 };
 
 const uint16_t PROGMEM numpad_off_combo[] =  {KC_P4, KC_P5, KC_P6, COMBO_END};
@@ -206,6 +207,7 @@ const uint16_t PROGMEM ss_combo[] = {LGUI_T(KC_S), KC_Y, COMBO_END};
 
 const uint16_t PROGMEM fn_combo[]    = {RSFT_T(KC_J), KC_I, COMBO_END};
 const uint16_t PROGMEM media_combo[] = {KC_TAB, LCTL_T(KC_A), COMBO_END};
+const uint16_t PROGMEM dot_slash_combo[] = {LT(L_NAV, KC_D), LGUI_T(KC_S), COMBO_END};
 
 
 combo_t key_combos[] = {
@@ -223,6 +225,7 @@ combo_t key_combos[] = {
     [COM_SS]                 = COMBO_ACTION(ss_combo),
     [COM_FN]                 = COMBO_ACTION(fn_combo),
     [COM_MEDIA]              = COMBO_ACTION(media_combo),
+    [COM_DOT_SLASH]          = COMBO_ACTION(dot_slash_combo),
 };
 /* COMBO_ACTION(x) is same as COMBO(x, KC_NO) */
 
@@ -325,6 +328,14 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
         	layer_off(L_MEDIA);
         }
         break;
+
+        case COM_DOT_SLASH:
+        {
+            if (pressed) 
+            {
+                SEND_STRING("./");
+            }
+        }
     }
 }
 
@@ -469,16 +480,6 @@ void leader_end_user(void) {
     else if (leader_sequence_two_keys(KC_D, KC_S)) 
     {
         SEND_STRING("./");
-    }
-    else if (leader_sequence_one_key(KC_E)) 
-    {
-        SEND_STRING("cd /home/lo/data/git_repos/extern/");
-        tap_code(KC_ENTER);
-    }
-    else if (leader_sequence_two_keys(KC_E, KC_T))
-    {
-        SEND_STRING("/home/lo/data/git_repos/extern/extern.py");
-        tap_code(KC_ENTER);
     }
     else if (leader_sequence_three_keys(KC_D, KC_E, KC_G)) 
     {
@@ -635,7 +636,7 @@ void leader_end_user(void) {
     else if (leader_sequence_two_keys(KC_G, KC_C))
     {
     	// git reset --hard
-        SEND_STRING("git checkout");
+        SEND_STRING("git checkout ");
     }
     else if (leader_sequence_three_keys(KC_O, KC_M, KC_B))
     {
